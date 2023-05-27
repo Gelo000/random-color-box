@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RANDOM BOX COLOR</title>
+	<style>
+		.box {
+			height: 100%;
+			width: 100%;
+			border: 1px solid black;
+			vertical-align: top;
+			margin: 1px;
+		}
+
+		.table td {
+			height: 50px;
+			padding: 0px;
+		}
+
+		.btn {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.container {
+			margin-top: 50px;
+		}
+
+		.container-size {
+			width: 35rem;
+			margin: 0 auto;
+		}
+
+	</style>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body onload="changeColors()">
+	<div class="container">
+		<div class="text-center">
+			<script>
+				function generateTable() {
+					var table = document.createElement("table");
+					table.classList.add("table", "table-bordered");
+
+					for (var i = 0; i < 10; i++) {
+						var row = document.createElement("tr");
+
+						for (var j = 0; j < 10; j++) {
+							var cell = document.createElement("td");
+							var box = document.createElement("div");
+							box.classList.add("box");
+
+							cell.appendChild(box);
+							row.appendChild(cell);
+						}
+
+						table.appendChild(row);
+					}
+
+					return table;
+				}
+
+				var container = document.createElement("div");
+				container.classList.add("text-center");
+				container.classList.add("container-size");
+				container.appendChild(generateTable());
+				document.body.appendChild(container);
+			</script>
+			<br>
+			<button id="btn" type="button" class="btn btn-primary" onclick="changeColors()">CHANGE</button>
+		</div>
+	</div>
+	<script>
+		function changeColors() {
+			let colors = [
+				"blue", "yellow", "green", "red", "black"
+			];
+
+			let boxes = document.getElementsByClassName("box");
+
+			for (var i = 0; i < boxes.length; i++) {
+				var randomColor = colors[Math.floor(Math.random() * colors.length)];
+				boxes[i].style.backgroundColor = randomColor;
+			}
+		}
+	</script>
+</body>
+</html>
